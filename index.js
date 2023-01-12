@@ -14,7 +14,17 @@ const requestListener = async (req, res) => {
             res.statusCode = 404;
             res.end();
         }
-    } else {
+    }
+    else if ( url === '/style.css' ) {
+        try {
+            const data = await fs.readFile('./views/style.css', 'utf8');
+            res.end(data);
+        } catch (error) {
+            res.statusCode = 404;
+            res.end();
+        }
+    }
+    else {
         res.statusCode = 404;
         res.end();
     }
