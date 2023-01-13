@@ -4,24 +4,37 @@ const fs = require('fs/promises');
 const PORT = 3000;
 
 const requestListener = async (req, res) => {
-    const {url} = req;
+    const {url, method} = req;
 
-    if( url === '/index.html' ) {
-        try {
-            const data = await fs.readFile('./views/index.html', 'utf8');
-            res.end(data);
-        } catch (error) {
-            res.statusCode = 404;
-            res.end();
+    if(method === 'GET') {
+        if( url === '/index.html' ) {
+            try {
+                const data = await fs.readFile('./views/index.html', 'utf8');
+                res.end(data);
+            } catch (error) {
+                res.statusCode = 404;
+                res.end();
+            }
         }
-    }
-    else if ( url === '/style.css' ) {
-        try {
-            const data = await fs.readFile('./views/style.css', 'utf8');
-            res.end(data);
-        } catch (error) {
-            res.statusCode = 404;
-            res.end();
+        else if ( url === '/style.css' ) {
+            try {
+                const data = await fs.readFile('./views/style.css', 'utf8');
+                res.end(data);
+            } catch (error) {
+                res.statusCode = 404;
+                res.end();
+            }
+        }
+    } else if(method === 'POST') {
+        if( url === '/user' ) {
+            let jsonString = '';
+            req.on('data', (chunk) => {
+                jsonString += chunk;
+            });
+            req.on('end', () => {
+                const user = JSON.parse(jsonString);
+                console.log(user);
+            })
         }
     }
     else {
