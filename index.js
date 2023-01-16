@@ -3,7 +3,7 @@ const app = express();
 const {validateUser} = require('./middlewares/index');
 const UserController = require('./controllers/UserController');
 
-const PORT = 3000;
+const PORT = 5000;
 
 const bodyParser = express.json();
 
