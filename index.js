@@ -8,6 +8,8 @@ const PORT = 5000;
 const bodyParser = express.json();
 
 app.post('/user', bodyParser, validateUser, UserController.createUser);
+
+app.get('/user', UserController.getOneUser);
 app.get('/users', UserController.getAllUsers);
 
 app.listen(PORT, () => {
