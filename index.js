@@ -8,10 +8,10 @@ const PORT = 5000;
 const bodyParser = express.json();
 
 app.post('/user', bodyParser, validateUser, UserController.createUser);
-
 app.get('/user/:userId', UserController.getOneUser);
 app.get('/users', UserController.getAllUsers);
 app.delete('/user/:userId', UserController.deleteOneUser);
+app.put('/user/:userId', bodyParser, UserController.updateUser);
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);

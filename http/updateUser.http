@@ -1,0 +1,10 @@
+PUT http://localhost:5000/user/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "John",
+    "lastName": "Testovich",
+    "email": "TEST@gmail.com",
+    "password": "qwertyTESTETETSTST",
+    "isSubscribed": true
+}
